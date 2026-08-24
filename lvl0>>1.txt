@@ -1,0 +1,17 @@
+# Level 0 → 1
+
+## Goal
+Find the password for the next level, stored in a file called `readme` in the home directory.
+
+## Commands used
+```bash
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+ls
+cat readme
+```
+
+## Explanation
+`ls` lists directory contents, `cat` prints a file to the terminal — the password is just sitting in `readme`.
+
+## Password for level 1
+`<6y2kwnwK6grgvwvpvLaa2T1cpFEKOhN>`
