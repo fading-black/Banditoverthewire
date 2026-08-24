@@ -1,0 +1,19 @@
+# Level 1 → 2
+
+## Goal
+The password for the next level is stored in a file called `-` located in the home directory.
+
+## Commands used
+```bash
+ssh bandit1@bandit.labs.overthewire.org -p 2220
+cat ./-
+```
+
+## Explanation
+A file named `-` is ambiguous to most command-line tools — a bare `-` is normally interpreted as 
+"read from stdin" or treated as an option flag rather than a filename. Prefixing it with `./` forces 
+the shell to treat it as a relative path in the current directory, so `cat` reads the actual file 
+contents instead of getting confused.
+
+## Password for level 2
+`<PK8fYLZg2hnHSz83plBL1iEPKdD3QToB>`
