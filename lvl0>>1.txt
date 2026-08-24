@@ -14,4 +14,4 @@ cat readme
 `ls` lists directory contents, `cat` prints a file to the terminal — the password is just sitting in `readme`.
 
 ## Password for level 1
-`<6y2kwnwK6grgvwvpvLaa2T1cpFEKOhN>`
+`<6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR>`
