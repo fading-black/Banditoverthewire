@@ -1,0 +1,19 @@
+# Level 10 → 11
+
+## Goal
+Find the password inside `data.txt`, which is stored in Base64-encoded form.
+
+## Commands used
+```bash
+ssh bandit10@bandit.labs.overthewire.org -p 2220
+base64 -d data.txt
+```
+
+## Explanation
+Base64 is an encoding scheme that represents binary or text data using only printable ASCII 
+characters (letters, numbers, +, /, and = padding at the end) — it's not encryption, just a 
+reversible encoding. The `-d` flag tells the `base64` command to decode the file back into its 
+original readable form, revealing the password.
+
+## Password for level 11
+pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
