@@ -1,0 +1,21 @@
+# Level 6 → 7
+
+## Goal
+Find a password file somewhere on the entire filesystem, identified by owner (bandit7), 
+group (bandit6), and exact size (33 bytes).
+
+## Commands used
+```bash
+ssh bandit6@bandit.labs.overthewire.org -p 2220
+find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+cat /var/lib/dpkg/info/bandit7.password
+```
+
+## Explanation
+Searching from `/` scans the whole filesystem rather than just the home directory. `-user` and 
+`-group` filter by ownership, `-size 33c` matches an exact byte count, and redirecting stderr 
+(`2>/dev/null`) hides the many "Permission denied" errors that come from folders bandit6 can't 
+access, leaving just the matching result.
+
+## Password for level 7
+Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
