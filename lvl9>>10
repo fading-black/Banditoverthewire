@@ -1,0 +1,18 @@
+# Level 9 → 10
+
+## Goal
+Find the password inside `data.txt`, a file containing mostly binary data, on the line preceded by several `=` characters.
+
+## Commands used
+```bash
+ssh bandit9@bandit.labs.overthewire.org -p 2220
+strings data.txt | grep =
+```
+
+## Explanation
+`strings` scans a binary/mixed file and extracts only sequences of printable/human-readable text, 
+discarding raw binary noise. Piping that into `grep =` narrows the output down to just the line(s) 
+containing an `=` character, which is exactly where the password is marked in this file.
+
+## Password for level 10
+B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
