@@ -1,0 +1,20 @@
+# Level 2 → 3
+
+## Goal
+Find the password for the next level, stored in a file named `--spaces in this filename--` 
+(literal leading/trailing double-dashes and spaces) in the home directory.
+
+## Commands used
+```bash
+ssh bandit2@bandit.labs.overthewire.org -p 2220
+cat -- "--spaces in this filename--"
+```
+
+## Explanation
+The filename begins with `--`, which most commands (including `cat`) normally interpret as the start 
+of an option flag rather than part of a filename. Passing `--` as a standalone argument tells the 
+command "stop parsing options — treat everything after this as a literal filename/argument." The 
+filename is then quoted to correctly include the embedded spaces.
+
+## Password for level 3
+`<7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME>`
