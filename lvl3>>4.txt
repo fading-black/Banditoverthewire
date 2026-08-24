@@ -1,0 +1,20 @@
+# Level 3 → 4
+
+## Goal
+Find the password for the next level, hidden inside the `inhere` directory as a dotfile (hidden file).
+
+## Commands used
+```bash
+ssh bandit3@bandit.labs.overthewire.org -p 2220
+cd inhere
+ls -a
+cat ...hidden
+```
+
+## Explanation
+Files starting with a `.` are hidden from a normal `ls` listing in Linux — this is a convention, not 
+a security feature. The `-a` flag tells `ls` to show all files, including hidden ones, revealing the 
+file that contains the password.
+
+## Password for level 4
+`<xzTXq1rDJQVVAzdv5cHq1TQytTWufAM>`
