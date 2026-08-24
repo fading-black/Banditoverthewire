@@ -1,0 +1,22 @@
+# Level 5 → 6
+
+## Goal
+Find the password file inside `inhere` (and its many nested subdirectories) by matching three 
+specific traits: exactly 1033 bytes in size, non-executable, and human-readable.
+
+## Commands used
+```bash
+ssh bandit5@bandit.labs.overthewire.org -p 2220
+cd inhere
+find . -type f -size 1033c ! -executable
+cd maybehere07
+cat .file2
+```
+
+## Explanation
+`find` searches recursively through nested directories and can filter files by multiple criteria at 
+once. `-size 1033c` matches an exact byte size, and `! -executable` excludes files with execute 
+permission set — combining both narrows a huge tree of decoy files down to exactly one match.
+
+## Password for level 6
+`<pXa26xhMWaC2SvDotA4r9EgZkulOeSBW>`
