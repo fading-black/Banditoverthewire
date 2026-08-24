@@ -1,0 +1,21 @@
+# Level 4 → 5
+
+## Goal
+Find the password among several files in the `inhere` directory, where only one file contains 
+human-readable (ASCII text) content — the rest are decoys.
+
+## Commands used
+```bash
+ssh bandit4@bandit.labs.overthewire.org -p 2220
+cd inhere
+file ./*
+cat ./-file07
+```
+
+## Explanation
+The `file` command inspects a file's actual content rather than trusting its name or extension. 
+Running it on all files at once (`./*`) quickly shows which single file is plain ASCII text — that's 
+the one holding the readable password, while the others are binary/garbage decoys.
+
+## Password for level 5
+`<6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG>`
