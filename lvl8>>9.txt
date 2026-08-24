@@ -1,0 +1,19 @@
+# Level 8 → 9
+
+## Goal
+Find the one line in `data.txt` that appears exactly once, while every other line appears multiple times.
+
+## Commands used
+```bash
+ssh bandit8@bandit.labs.overthewire.org -p 2220
+sort data.txt | uniq -u
+```
+
+## Explanation
+`uniq` can only detect duplicate lines if they are adjacent to each other, so the file must be 
+`sort`ed first to group identical lines together. Piping (`|`) sends `sort`'s output directly into 
+`uniq -u`, which then prints only the lines that have no duplicate — leaving just the single unique 
+line, which contains the password.
+
+## Password for level 9
+EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
