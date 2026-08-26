@@ -1,0 +1,41 @@
+# Level 12 → 13
+
+## Goal
+Find the password hidden inside multiple nested layers of compression, starting from a hexdump 
+of a file that has been compressed repeatedly using different formats (gzip, bzip2, tar, etc.).
+
+## Commands used
+```bash
+# Setup scratch workspace
+mkdir /tmp/mywork12
+cp data.txt /tmp/mywork12
+cd /tmp/mywork12
+
+# Step 1 - reverse the hexdump back to binary
+xxd -r data.txt > data
+
+# Step 2 - check file type, rename, decompress (repeat until ASCII text)
+file data
+mv data data.gz
+gzip -d data.gz
+
+file data
+mv data data.bz2
+bzip2 -df data.bz2
+
+file data
+tar -xf data.tar
+ls
+
+# keep repeating file → rename → decompress until:      # shows: ASCII text
+
+
+## My decompression sequence
+1. xxd -r → gzip
+2. gzip -d → bzip2
+3. bzip2 -d → tar
+4. tar -xf → gzip
+5. gzip -d → ASCII text 
+
+## Password for level 13
+qQYQiHOBPR8zR61qxYqX45quvihF2uzk
