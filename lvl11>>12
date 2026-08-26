@@ -1,0 +1,20 @@
+# Level 11 → 12
+
+## Goal
+Find the password inside `data.txt`, which is encoded using ROT13 (each letter shifted 13 places 
+in the alphabet).
+
+## Commands used
+```bash
+ssh bandit11@bandit.labs.overthewire.org -p 2220
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+```
+
+## Explanation
+ROT13 is a simple substitution cipher that shifts each letter 13 positions through the alphabet 
+(wrapping around after Z). The `tr` command maps the normal alphabet (`A-Za-z`) to its ROT13-shifted 
+equivalent (`N-ZA-Mn-za-m`), decoding the text back to readable form. Since 13 is exactly half of 26, 
+applying ROT13 twice returns the original text — so encoding and decoding use the identical command.
+
+## Password for level 12
+GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
