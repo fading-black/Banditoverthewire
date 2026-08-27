@@ -1,0 +1,28 @@
+# Level 14 → 15
+
+## Goal
+Submit the current level's password to port 30000 on localhost using netcat 
+and receive the next level's password in return.
+
+## Commands used
+```bash
+ssh bandit14@bandit.labs.overthewire.org -p 2220
+cat /etc/bandit_pass/bandit14 | nc localhost 30000
+```
+
+## Key concepts
+| Term | Meaning |
+|---|---|
+| `nc` (netcat) | A networking tool for sending/receiving raw data over TCP connections |
+| `localhost` | This same machine |
+| Port 30000 | The port where the service is listening for input |
+| Pipe (`\|`) | Sends output of one command as input to another |
+
+## Explanation
+Netcat (`nc`) opens a raw TCP connection to a host and port, sends data, and prints 
+whatever comes back. Piping bandit14's password into `nc localhost 30000` sends it 
+to the service listening on that port, which validates it and responds with the next 
+level's password. This is the basic building block of how network services communicate.
+
+## Password for level 15
+pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
