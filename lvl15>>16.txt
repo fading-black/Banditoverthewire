@@ -1,0 +1,32 @@
+# Level 15 → 16
+
+## Goal
+Submit the current level's password to port 30001 on localhost using SSL/TLS 
+encryption to receive the next level's password.
+
+## Commands used
+```bash
+ssh bandit15@bandit.labs.overthewire.org -p 2220
+openssl s_client -connect localhost:30001 -quiet
+# then type/paste bandit15's password and hit Enter
+```
+
+## Key concepts
+| Term | Meaning |
+|---|---|
+| `openssl` | A toolkit for working with SSL/TLS encryption |
+| `s_client` | SSL client mode — opens an encrypted connection to a server |
+| SSL/TLS | A protocol that encrypts data sent between two machines |
+| `-quiet` | Suppresses certificate noise in the output |
+| Port 30001 | The port where the SSL enabled service is listening |
+
+## Explanation
+Unlike level 14→15 where `nc` sent data as plain unencrypted text, this level's 
+service requires an SSL/TLS encrypted connection. `openssl s_client` handles the 
+encryption handshake automatically — once connected you interact with it just like 
+`nc`, typing data and reading responses, but everything is encrypted in transit. 
+The flood of certificate info that appears on connection can be safely ignored by 
+using the `-quiet` flag.
+
+## Password for level 16
+kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V
