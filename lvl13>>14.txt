@@ -1,0 +1,46 @@
+# Level 13 → 14
+
+## Goal
+Use an SSH private key file found in bandit13's home directory to log directly into bandit14's 
+account without a password, then read bandit14's password from the system password store.
+
+## Commands used
+```bash
+# Step 1 - log into bandit13
+ssh bandit13@bandit.labs.overthewire.org -p 2220
+
+# Step 2 - copy the private key to your local PC (run this on YOUR machine, not bandit server)
+scp -P 2220 bandit13@bandit.labs.overthewire.org:~/sshkey.private .
+
+# Step 3 - SSH into bandit14 using the key (run from your PC)
+ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+
+# Step 4 - read bandit14's password
+cat /etc/bandit_pass/bandit14
+```
+
+## Key concepts
+| Term | Meaning |
+|---|---|
+| SSH private key | A file used to authenticate to a server instead of a password |
+| `-i` flag | Tells SSH which private key file to use for authentication |
+| `scp` | Secure copy — transfers files between machines over SSH |
+| `-P 2220` | Port flag for scp (capital P, unlike ssh which uses lowercase) |
+| `~/sshkey.private` | The key file path on the remote server (`~` = home directory) |
+| `/etc/bandit_pass/` | System folder storing each bandit level's password |
+
+## Why we used scp
+The Bandit server blocks SSH connections originating from localhost to conserve resources —
+so we couldn't SSH from bandit13 directly into bandit14 on the same server. Instead we 
+copied the private key file down to our local PC using `scp`, then used it to SSH into 
+bandit14 directly from our own machine.
+
+## Explanation
+Instead of a password, this level uses SSH key-based authentication. The private key file 
+(`sshkey.private`) acts like a digital ID card — presenting it to the SSH server proves 
+your identity without needing to type a password. Once logged in as bandit14, the password 
+is readable directly from `/etc/bandit_pass/bandit14` since that file is only accessible 
+to bandit14.
+
+## Password for level 14
+aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
