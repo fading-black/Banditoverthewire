@@ -1,0 +1,42 @@
+# Level 17 → 18
+
+## Goal
+Find the one line that changed between `passwords.old` and `passwords.new` — 
+that changed line is the password for the next level.
+
+## Commands used
+```bash
+# Step 1 - get private key from bandit16 server
+ssh bandit16@bandit.labs.overthewire.org -p 2220
+nmap -p 31000-32000 localhost
+openssl s_client -connect localhost:<correct port> -quiet
+# paste bandit16 password, server returns private key
+
+# Step 2 - save key on server and download to PC
+mkdir /tmp/b17key
+chmod 700 /tmp/b17key
+nano /tmp/b17key/key.private
+chmod 400 /tmp/b17key/key.private
+
+# Step 3 - download key to PC (run from PowerShell)
+scp -P 2220 bandit16@bandit.labs.overthewire.org:/tmp/b17key/key.private C:\Users\nagu2\Downloads\bandit17clean.key
+
+# Step 4 - SSH into bandit17 using the key
+ssh -i C:\Users\nagu2\Downloads\bandit17clean.key bandit17@bandit.labs.overthewire.org -p 2220
+
+# Step 5 - find the changed line
+diff passwords.old passwords.new
+```
+
+## Key concepts
+| Term | Meaning |
+|---|---|
+| `diff` | Compares two files line by line and shows what changed |
+| `<` in diff output | Line from the first/old file |
+| `>` in diff output | Line from the second/new file |
+| `nmap` | Network scanner — finds open ports in a range |
+| `openssl s_client` | Opens an SSL encrypted connection to a port |
+| `chmod 400` | Makes key file read only by owner — required for SSH |
+| `scp` | Securely copies files between machines |
+
+password >> kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
