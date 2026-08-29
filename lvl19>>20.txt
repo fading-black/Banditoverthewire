@@ -1,0 +1,25 @@
+# Level 19 → 20
+
+## Goal
+Use a SUID binary called `bandit20-do` to run a command as bandit20, 
+reading the next level's password from `/etc/bandit_pass/bandit20`.
+
+## Commands used
+```bash
+ssh bandit19@bandit.labs.overthewire.org -p 2220
+ls -la
+./bandit20-do cat /etc/bandit_pass/bandit20
+```
+
+## Key concepts
+| Term | Meaning |
+|---|---|
+| SUID | Set User ID — a special permission bit on an executable |
+| SUID binary | A program that runs with its owner's permissions, not the caller's |
+| `s` in permissions | The `x` (execute) bit replaced by `s` means SUID is set |
+| `/etc/bandit_pass/` | System folder storing each level's password, readable only by that user |
+| `./bandit20-do` | Runs the SUID binary from the current directory |
+
+
+## Password for level 20
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
