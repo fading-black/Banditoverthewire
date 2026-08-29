@@ -1,0 +1,32 @@
+# Level 18 → 19
+
+## Goal
+Read the password from `~/readme` in bandit18's home directory, despite the 
+`.bashrc` being modified to immediately log you out the moment you SSH in.
+
+## Commands used
+```bash
+ssh bandit18@bandit.labs.overthewire.org -p 2220 "cat ~/readme"
+```
+
+## Key concepts
+| Term | Meaning |
+|---|---|
+| `.bashrc` | A script that runs automatically every time a bash shell starts |
+| Interactive shell | A full shell session where you type commands back and forth |
+| Non-interactive command | A single command passed directly through SSH, bypassing `.bashrc` |
+| `~/readme` | The readme file in bandit18's home directory (`~` = home) |
+| `~` | Shorthand for the current user's home directory |
+
+## Explanation
+`.bashrc` is a configuration file that bash runs automatically 
+every time a new interactive shell starts — normally used for 
+setting up aliases, environment variables, and preferences. In 
+this level it has been weaponized to immediately call `exit`, 
+booting you out before you can do anything. The fix bypasses 
+this entirely by never starting an interactive shell in the 
+first place — SSH just runs the single quoted command directly 
+on the remote machine and returns the output.
+
+## Password for level 19
+kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
