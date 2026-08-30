@@ -1,0 +1,39 @@
+# Level 20 → 21
+
+## Goal
+Use a SUID binary called `suconnect` that makes a TCP connection to a port 
+you specify on localhost, reads a line of text, and if that line is the 
+current level's password, sends back the next level's password.
+
+## Commands used
+```bash
+ssh bandit20@bandit.labs.overthewire.org -p 2220
+
+# Step 1 - set up a netcat listener in the background sending bandit20's password
+echo "bandit20password" | nc -l -p 1234 &
+
+# Step 2 - run suconnect pointing at that port
+./suconnect 1234
+```
+
+## Key concepts
+| Term | Meaning |
+|---|---|
+| `suconnect` | SUID binary that connects to a port and validates the password |
+| `nc -l -p 1234` | Netcat in listen mode — waits for an incoming connection on port 1234 |
+| `echo "password" \|` | Pipes the password directly into netcat so it sends it automatically |
+| `&` | Runs a command in the **background** so you can keep using the terminal |
+| Background process | A command running independently while you type other commands |
+
+## What is a background process?
+Normally when you run a command it takes over your terminal and you 
+can't type anything else until it finishes. Adding `&` at the end 
+sends it to the background — it keeps running on its own while your 
+terminal stays free for other commands. This is essential here because 
+you need TWO things running at the same time:
+- netcat listening on a port (background)
+- suconnect connecting to that port (foreground)
+##password
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+
+## What actually happens step by step
